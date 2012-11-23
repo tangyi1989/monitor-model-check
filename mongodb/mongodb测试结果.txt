@@ -1,0 +1,11 @@
+大概想了几种方法:
+
+1.一个是每个虚拟机的都放在同一条数据中的, 然后用upsert这样的操作去更新这个虚拟机的记录.
+问题在with_arry.py中指出.
+
+2.后面的是,来了就直接存,然后再用mapreduce做归档, 结果很悲剧, 由于数据量过大, 导致一个悲
+剧的发生.
+
+Bug descripbe : https://jira.mongodb.org/browse/SERVER-4441
+
+upsert过多过快会导致数据库崩溃,insert不会.
